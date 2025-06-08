@@ -3,9 +3,10 @@ from typing import Union
 
 from sleeper_wrapper.base_api import BaseApi
 
-logging.basicConfig(level=logging.WARN)
 
-warning_message = "The Stats API is no longer included in Sleeper's documentation, therefore we cannot guarantee that this class will continue working."
+LOG = logging.getLogger(__name__)
+WARNING_MESSAGE = "The Stats API is no longer included in Sleeper's documentation, therefore we cannot guarantee that this class will continue working."
+
 
 class Stats(BaseApi):
 	"""Retrieves stats and projections from Sleeper's stats provider.
@@ -18,7 +19,7 @@ class Stats(BaseApi):
 
 	def __init__(self):
 		"""Initializes the instance for getting the stats."""
-		logging.warning(warning_message)
+		LOG.warning(WARNING_MESSAGE)
 		self._base_url = "https://api.sleeper.app/v1/stats/{}".format("nfl")
 		self._projections_base_url = "https://api.sleeper.app/v1/projections/{}".format("nfl")
 

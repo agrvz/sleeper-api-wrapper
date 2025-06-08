@@ -2,7 +2,9 @@ import logging
 
 from .base_api import BaseApi
 
-logging.basicConfig(level=logging.INFO)
+
+LOG = logging.getLogger(__name__)
+
 
 class Players(BaseApi):
 	"""Retrieves player data from Sleeper."""
@@ -30,7 +32,7 @@ class Players(BaseApi):
 
 		Save the information to your own servers, if possible.
 		"""
-		logging.info(message)
+		LOG.info(message)
 		return self._call("https://api.sleeper.app/v1/players/nfl")
 
 	def get_trending_players(self, sport: str, add_drop: str = "add", hours: int = 24, limit: int = 25) -> list:
@@ -61,5 +63,5 @@ class Players(BaseApi):
 		Copy the code below to embed it in your app:
 		<iframe src="https://sleeper.app/embed/players/nfl/trending/add?lookback_hours=24&limit=25" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
 		"""
-		logging.info(message)
+		LOG.info(message)
 		return self._call("https://api.sleeper.app/v1/players/{}/trending/{}?lookback_hours={}&limit={}".format(sport, add_drop, hours, limit))
